@@ -532,19 +532,19 @@ def do_discover(sf):
             mdata = metadata.write(
                 mdata, ('properties', prop), 'inclusion', 'unsupported')
 
-        # if replication_key:
-        #     mdata = metadata.write(
-        #         mdata, (), 'valid-replication-keys', [replication_key])
-        # else:
-        #     mdata = metadata.write(
-        #         mdata,
-        #         (),
-        #         'forced-replication-method',
-        #         {
-        #             'replication-method': 'FULL_TABLE',
-        #             'reason': 'No replication keys found from the Salesforce API'})
+        if replication_key:
+            mdata = metadata.write( 
+                mdata, (), 'valid-replication-keys', [replication_key])
+        else:
+            mdata = metadata.write(
+                mdata,
+                (),
+                'forced-replication-method',
+                {
+                    'replication-method': 'FULL_TABLE',
+                    'reason': 'No replication keys found from the Salesforce API'})
 
-        # mdata = metadata.write(mdata, (), 'table-key-properties', key_properties)
+        mdata = metadata.write(mdata, (), 'table-key-properties', key_properties)
 
         schema = {
             'type': 'object',
