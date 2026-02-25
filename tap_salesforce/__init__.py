@@ -312,8 +312,8 @@ def do_discover(sf):
                                                enabled for the Salesforce org.
     """
     global_description = sf.describe()
-    objects_to_discover = {'AM_Asset__c'}
-    # objects_to_discover = {o['name'] for o in global_description['sobjects']}
+    # objects_to_discover = {'AM_Asset__c'}
+    objects_to_discover = {o['name'] for o in global_description['sobjects']}
     key_properties = ['Id']
 
     sf_custom_setting_objects = []
